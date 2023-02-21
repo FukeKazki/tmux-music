@@ -1,3 +1,5 @@
+#!/usr/bin/env deno run -A
+
 import { Application, Router } from "oak";
 import { useCommand } from "./util.ts";
 
