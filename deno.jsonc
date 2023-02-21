@@ -1,0 +1,8 @@
+{
+  "tasks": {
+    "start": "deno run --allow-run --allow-net ./src/server.ts"
+  },
+  "imports": {
+    "oak": "https://deno.land/x/oak/mod.ts"
+  }
+}
