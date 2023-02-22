@@ -11,8 +11,6 @@ if (import.meta.main) {
   const browser = parsed?.broswer ?? DEFAULT_BROWSER;
   const interval = parsed?.interval ?? DEFAULT_INTERVAL;
   const maxLength = parsed?.["max-length"] ?? DEFAULT_MAX_LENGTH;
-  console.log(parsed);
-  console.log(browser + interval + maxLength);
   let index = 0;
 
   while (true) {
@@ -28,7 +26,7 @@ if (import.meta.main) {
     );
 
     // ステータスラインの表示を更新する
-    // useCommand(["tmux", "set", "-g", "status-right", trimed]);
+    useCommand(["tmux", "set", "-g", "status-right", trimed]);
 
     if (index >= stdout.length) {
       index = 0;
