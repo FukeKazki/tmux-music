@@ -1,11 +1,17 @@
 #!/usr/bin/env deno run --allow-run
-
+import { parse } from "https://deno.land/std@0.177.0/flags/mod.ts";
 import { rollTrimStr, sleep, useCommand } from "./util.ts";
 
-const INTERVAL = 1000;
-const MAX_LENGTH = 15;
+const DEFAULT_BROWSER = "Chrome";
+const DEFAULT_INTERVAL = 1000;
+const DEFAULT_MAX_LENGTH = 15;
 
 if (import.meta.main) {
+  const parsed = parse(Deno.args);
+  const browser = parsed?.broswer ?? DEFAULT_BROWSER;
+  const inerval = parsed?.inerval ?? DEFAULT_INTERVAL;
+  const maxLength = parsed?.["max-length"] ?? DEFAULT_MAX_LENGTH;
+
   let index = 0;
 
   while (true) {
@@ -17,7 +23,7 @@ if (import.meta.main) {
     const trimed = rollTrimStr(
       stdout.replace(/\r?\n?\s/g, ""),
       index,
-      MAX_LENGTH,
+      maxLength,
     );
 
     // ステータスラインの表示を更新する
@@ -29,6 +35,6 @@ if (import.meta.main) {
       index++;
     }
 
-    await sleep(INTERVAL);
+    await sleep(inerval);
   }
 }
