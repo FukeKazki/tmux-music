@@ -7,7 +7,8 @@ BROWSER=$(tmux show-options -gv @tmux-music-browser)
 INTERVAL_TIME=$(tmux show-options -gv @tmux-music-interval-time)
 MAX_LENGTH=$(tmux show-options -gv @tmux-music-max-length)
 
+# $SCRIPT_PATH --browser $BROWSER --interval $INTERVAL_TIME --max-length $MAX_LENGTH
 # tmuxが終了したらプロセスも終了するように run-shellを使う
 # バックグラウンドで実行
-tmux run-shell -b "$SCRIPT_PATH --browser $BROWSER --inerval $INTERVAL_TIME --max-length $MAX_LENGTH"
+tmux run-shell -b "$SCRIPT_PATH --browser $BROWSER --interval $INTERVAL_TIME --max-length $MAX_LENGTH"
 

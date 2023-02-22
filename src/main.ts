@@ -9,9 +9,10 @@ const DEFAULT_MAX_LENGTH = 15;
 if (import.meta.main) {
   const parsed = parse(Deno.args);
   const browser = parsed?.broswer ?? DEFAULT_BROWSER;
-  const inerval = parsed?.inerval ?? DEFAULT_INTERVAL;
+  const interval = parsed?.interval ?? DEFAULT_INTERVAL;
   const maxLength = parsed?.["max-length"] ?? DEFAULT_MAX_LENGTH;
-
+  console.log(parsed);
+  console.log(browser + interval + maxLength);
   let index = 0;
 
   while (true) {
@@ -27,7 +28,7 @@ if (import.meta.main) {
     );
 
     // ステータスラインの表示を更新する
-    useCommand(["tmux", "set", "-g", "status-right", trimed]);
+    // useCommand(["tmux", "set", "-g", "status-right", trimed]);
 
     if (index >= stdout.length) {
       index = 0;
@@ -35,6 +36,6 @@ if (import.meta.main) {
       index++;
     }
 
-    await sleep(inerval);
+    await sleep(interval);
   }
 }
