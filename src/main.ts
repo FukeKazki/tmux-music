@@ -10,7 +10,7 @@ if (import.meta.main) {
   const parsed = parse(Deno.args);
   const browser = parsed?.broswer ?? DEFAULT_BROWSER;
   const interval = DEFAULT_INTERVAL;
-  const maxLength = parsed?.["max-length"] ?? DEFAULT_MAX_LENGTH;
+  const maxLength = DEFAULT_MAX_LENGTH;
   let index = 0;
 
   while (true) {
