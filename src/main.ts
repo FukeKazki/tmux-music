@@ -9,8 +9,14 @@ const DEFAULT_MAX_LENGTH = 15;
 if (import.meta.main) {
   const parsed = parse(Deno.args);
   const browser = parsed?.broswer ?? DEFAULT_BROWSER;
-  const interval = DEFAULT_INTERVAL;
-  const maxLength = DEFAULT_MAX_LENGTH;
+  const parsedInterval = parseInt(parsed?.interval);
+  const interval = Number.isNaN(parsedInterval)
+    ? DEFAULT_INTERVAL
+    : parsedInterval;
+  const parsedMaxLength = parseInt(parsed?.["max-length"]);
+  const maxLength = Number.isNaN(parsedMaxLength)
+    ? DEFAULT_MAX_LENGTH
+    : parsedMaxLength;
   let index = 0;
 
   while (true) {
