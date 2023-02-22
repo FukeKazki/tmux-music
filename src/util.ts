@@ -17,3 +17,14 @@ export const useCommand = async (cmd: string[]) => {
     stderror: new TextDecoder().decode(stderror),
   };
 };
+
+export const rollTrimStr = (
+  str: string,
+  start: number,
+  length: number,
+): string => {
+  return (str + " " + str).substring(start, start + length);
+};
+
+export const sleep = (ms: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, ms));
