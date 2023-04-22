@@ -2,13 +2,11 @@
 import { parse } from "https://deno.land/std@0.177.0/flags/mod.ts";
 import { rollTrimStr, sleep, useCommand } from "./util.ts";
 
-const DEFAULT_BROWSER = "Chrome";
 const DEFAULT_INTERVAL = 500;
 const DEFAULT_MAX_LENGTH = 15;
 
 if (import.meta.main) {
   const parsed = parse(Deno.args);
-  const browser = parsed?.broswer ?? DEFAULT_BROWSER;
   const parsedInterval = parseInt(parsed?.interval);
   const interval = Number.isNaN(parsedInterval)
     ? DEFAULT_INTERVAL
@@ -21,8 +19,10 @@ if (import.meta.main) {
 
   while (true) {
     const { stdout } = await useCommand([
-      "osascript",
-      new URL("./getYoutubeMusic.applescript", import.meta.url).pathname,
+      new URL("./nowplaying-cli", import.meta.url).pathname,
+      "get",
+      "title",
+      "artist",
     ]);
 
     // TODO: 空白トリムせずに先頭が空白だったら+空白分文字出すようにする
