@@ -23,7 +23,11 @@ export const rollTrimStr = (
   start: number,
   length: number,
 ): string => {
-  return (str + " " + str).substring(start, start + length);
+  let tmp = "";
+  while (tmp.length < length + str.length) {
+    tmp += str + " ";
+  }
+  return tmp.substring(start, start + length);
 };
 
 export const sleep = (ms: number): Promise<void> =>
