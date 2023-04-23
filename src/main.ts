@@ -27,7 +27,7 @@ if (import.meta.main) {
 
     // TODO: 空白トリムせずに先頭が空白だったら+空白分文字出すようにする
     const trimed = rollTrimStr(
-      stdout.replace(/\r?\n?\s?•/g, ""),
+      stdout.replace(/\r?\n?\s?•/g, " "),
       index,
       maxLength,
     );
