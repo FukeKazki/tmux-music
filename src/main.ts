@@ -40,7 +40,7 @@ if (import.meta.main) {
       );
 
       // ステータスラインの表示を更新する
-      useCommand(["tmux", "set", "-g", "status-right", trimed]);
+      await useCommand(["tmux", "set", "-g", "status-right", trimed]);
 
       if (index >= stdout.length) {
         index = 0;
@@ -50,7 +50,13 @@ if (import.meta.main) {
     } catch (error: unknown) {
       if (error instanceof InvalidStringFormatError) {
         // ステータスラインの表示を更新する
-        useCommand(["tmux", "set", "-g", "status-right", "音楽を聴こう!"]);
+        await useCommand([
+          "tmux",
+          "set",
+          "-g",
+          "status-right",
+          "音楽を聴こう!",
+        ]);
       }
     }
     await sleep(interval);

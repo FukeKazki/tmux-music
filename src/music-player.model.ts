@@ -16,7 +16,7 @@ export class MusicPlayerModel {
   ) {}
 
   static fromString(str: string): MusicPlayerModel {
-    const match = str.match(/^(?<title>.+)\n(?<artist>.+)$/);
+    const match = str.match(/^(?<title>.+)\n(?<artist>.+)\n$/);
     if (!match?.groups?.title && !match?.groups?.artist) {
       throw new InvalidStringFormatError();
     }
