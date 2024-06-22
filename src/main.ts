@@ -1,6 +1,10 @@
 #!/usr/bin/env deno run --allow-run
 import { parse } from "https://deno.land/std@0.177.0/flags/mod.ts";
 import { rollTrimStr, sleep, useCommand } from "./util.ts";
+import {
+  InvalidStringFormatError,
+  MusicPlayerModel,
+} from "./music-player.model.ts";
 
 const DEFAULT_INTERVAL = 500;
 const DEFAULT_MAX_LENGTH = 15;
@@ -18,29 +22,37 @@ if (import.meta.main) {
   let index = 0;
 
   while (true) {
-    const { stdout } = await useCommand([
-      new URL("./nowplaying-cli", import.meta.url).pathname,
-      "get",
-      "title",
-      "artist",
-    ]);
+    try {
+      const { stdout } = await useCommand([
+        new URL("./bin/nowplaying-cli", import.meta.url).pathname,
+        "get",
+        "title",
+        "artist",
+      ]);
 
-    // TODO: 空白トリムせずに先頭が空白だったら+空白分文字出すようにする
-    const trimed = rollTrimStr(
-      stdout.replace(/\n/g, " "),
-      index,
-      maxLength,
-    );
+      const { title, artist } = MusicPlayerModel.fromString(stdout);
 
-    // ステータスラインの表示を更新する
-    useCommand(["tmux", "set", "-g", "status-right", trimed]);
+      // TODO: 空白トリムせずに先頭が空白だったら+空白分文字出すようにする
+      const trimed = rollTrimStr(
+        `${title} ${artist}`,
+        index,
+        maxLength,
+      );
 
-    if (index >= stdout.length) {
-      index = 0;
-    } else {
-      index++;
+      // ステータスラインの表示を更新する
+      useCommand(["tmux", "set", "-g", "status-right", trimed]);
+
+      if (index >= stdout.length) {
+        index = 0;
+      } else {
+        index++;
+      }
+    } catch (error: unknown) {
+      if (error instanceof InvalidStringFormatError) {
+        // ステータスラインの表示を更新する
+        useCommand(["tmux", "set", "-g", "status-right", "音楽を聴こう!"]);
+      }
     }
-
     await sleep(interval);
   }
 }
