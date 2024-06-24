@@ -33,11 +33,7 @@ if (import.meta.main) {
       const { title, artist } = MusicPlayerModel.fromString(stdout);
 
       // TODO: 空白トリムせずに先頭が空白だったら+空白分文字出すようにする
-      const trimed = rollTrimStr(
-        `${title} ${artist}`,
-        index,
-        maxLength,
-      );
+      const trimed = rollTrimStr(`${title} ${artist}`, index, maxLength);
 
       // ステータスラインの表示を更新する
       await useCommand(["tmux", "set", "-g", "status-right", trimed]);

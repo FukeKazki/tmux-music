@@ -1,8 +1,8 @@
 export const useCommand = async (cmd: string[]) => {
   const p = Deno.run({
     cmd,
-    "stderr": "piped",
-    "stdout": "piped",
+    stderr: "piped",
+    stdout: "piped",
   });
 
   const [status, stdout, stderror] = await Promise.all([

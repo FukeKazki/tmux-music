@@ -20,10 +20,7 @@ export class MusicPlayerModel {
     if (!match?.groups?.title && !match?.groups?.artist) {
       throw new InvalidStringFormatError();
     }
-    return new MusicPlayerModel(
-      match.groups.title,
-      match.groups.artist,
-    );
+    return new MusicPlayerModel(match.groups.title, match.groups.artist);
   }
 }
 
