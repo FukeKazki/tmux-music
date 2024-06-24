@@ -25,7 +25,7 @@ export class MusicPlayerModel {
 }
 
 Deno.test("タイトルとアーティストを正しくパースする", () => {
-  const str = "BASH BASH - feat. JP THE WAVY & Awich\nLANA";
+  const str = "BASH BASH - feat. JP THE WAVY & Awich\nLANA\n";
   const { title, artist } = MusicPlayerModel.fromString(str);
   assertEquals(title, "BASH BASH - feat. JP THE WAVY & Awich");
   assertEquals(artist, "LANA");
