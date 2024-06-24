@@ -24,7 +24,7 @@ if (import.meta.main) {
   while (true) {
     try {
       const { stdout } = await useCommand([
-        new URL("./bin/nowplaying-cli", import.meta.url).pathname,
+        new URL("./nowplaying-cli", import.meta.url).pathname,
         "get",
         "title",
         "artist",

@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # 相対パスを計算する
-SCRIPT_PATH="$(cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P)/src/main.ts"
+SCRIPT_PATH="$(pwd -P)/src/main.ts"
 
 INTERVAL_TIME=$(tmux show-options -gv @tmux-music-interval-time)
 MAX_LENGTH=$(tmux show-options -gv @tmux-music-max-length)
